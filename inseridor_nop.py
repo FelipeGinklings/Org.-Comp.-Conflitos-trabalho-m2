@@ -6,7 +6,7 @@ class InseridorNOP:
         self.nop = ("0010011", 0, 0, 0, 0)
 
     def adicionar_nops(self):
-        
+
         estrutura_nops = self.estrutura[:]
         offset = 0
 
@@ -15,7 +15,7 @@ class InseridorNOP:
             n = self.num_NOPS[idx]
 
             for _ in range(n):
-                estrutura_nops.insert(pos+1, self.nop)
+                estrutura_nops.insert(pos + 1, self.nop)
                 offset += 1
 
         return estrutura_nops
