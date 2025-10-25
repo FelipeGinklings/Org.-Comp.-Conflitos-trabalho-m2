@@ -21,11 +21,13 @@ def ler_arquivo(nome_arquivo):
 desmontador = Desmontador()
 
 while True:
-    nome_arquivo = input("Escreva o nome do arquivo a ser aberto: ")
+    # nome_arquivo = input("Escreva o nome do arquivo a ser aberto: ")
+    nome_arquivo = "fib"
 
     nome_arquivo += ".txt"
 
-    opcao = input("O arquivo está em binário (bin) ou hexadecimal (hex)? ").lower()
+    # opcao = input("O arquivo está em binário (bin) ou hexadecimal (hex)? ").lower()
+    opcao = "bin"
 
     try:
         if opcao == "bin":
@@ -38,11 +40,12 @@ while True:
             linhas = convertido
         else:
             print("Insira uma opção válida! Ou 'bin' ou 'hex'.'")
+            raise ValueError  # the program should finish here and not go on in case of wrong option
 
         codigo_completo, estrutura = desmontador.desmontar_instrucoes(linhas)
 
-        desmontador.imprimir_instrucoes(codigo_completo)
-        desmontador.imprimir_instrucoes(estrutura)
+        # desmontador.imprimir_instrucoes(codigo_completo)
+        # desmontador.imprimir_instrucoes(estrutura)
 
         tem_forwarding = False
         deteccao = Detector(estrutura)
@@ -60,3 +63,9 @@ while True:
         print(
             "O sistema de enumeração (bin/hex) foram escolhidos incorretamente. Tente novamente."
         )
+    finally:
+        continuar = input("Continuar (s/n)? ").lower()
+        if continuar in ["n", "nao", "não"]:
+            break
+
+print("Programa finalizado!")
