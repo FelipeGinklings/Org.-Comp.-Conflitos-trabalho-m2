@@ -6,10 +6,8 @@ class Linhas:
         self._nome_arquivo = nome_arquivo
         self._opcao = opcao
         if not os.path.exists(self._nome_arquivo):
-            raise FileNotFoundError(
-                f"O arquivo '{self._nome_arquivo}' não foi encontrado."
-            )
-
+            self._linhas = []
+            return
         with open(self._nome_arquivo) as arquivo:
             self._linhas = [linha.rstrip() for linha in arquivo]
 

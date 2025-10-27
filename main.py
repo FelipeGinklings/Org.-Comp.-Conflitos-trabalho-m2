@@ -13,8 +13,11 @@ if __name__ == "__main__":
     linhas = Linhas()
     while True:
         try:
+            # linhas.pedirPorInput()
             linhas = linhas.getLinhas()
             codigo_completo, estrutura = desmontador.desmontar_instrucoes(linhas)
+            print(codigo_completo)
+            print(estrutura)
             tem_forwarding = False
             deteccao = Detector(estrutura)
             num_linhas_conflito, pos_linhas = deteccao.verificar_conflito(
