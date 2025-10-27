@@ -265,7 +265,7 @@ class Desmontador:
         for branch in branch_jal_index:
             instrucao_J_B: Instrucao = instrucoes[branch]
             intrucao_destino = instrucoes[int(branch + instrucao_J_B.immed / 4)]
-            instrucao_J_B.set_id_destino(id(intrucao_destino))
+            instrucao_J_B.set_id_destino(intrucao_destino)
 
         # Adiciona duas instruções "addi 0,0,0" no final
         addi_zero = Instrucao(linha[0], "I", "addi", 0, 0, func3=0, immed=0)
