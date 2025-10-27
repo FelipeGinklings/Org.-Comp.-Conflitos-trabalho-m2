@@ -3,7 +3,7 @@ from collections import defaultdict
 
 
 class Desmontador:
-    def criarNome(self, opcode, func3):
+    def criar_nome(self, opcode, func3):
         traduzir = {
             "1100011": {
                 "000": "beq",
@@ -87,7 +87,7 @@ class Desmontador:
                 # --- Tipo I com shamt ---
                 case "0010011" if linha[2] in ("001", "101"):
                     shamt = self.bin_para_int(resto[-5:])
-                    nome = self.criarNome(
+                    nome = self.criar_nome(
                         linha[0],
                         str(int(linha[2], 2))
                         + str(int(not (linha[linha[-1][1]] == "1"))),
@@ -105,7 +105,7 @@ class Desmontador:
                 # --- Tipo I padrão ---
                 case "0010011":
                     immed = self.bin_para_int(resto, signed=True)
-                    nome = self.criarNome(linha[0] + "-A", linha[2])
+                    nome = self.criar_nome(linha[0] + "-A", linha[2])
                     intrucao = Instrucao(
                         linha[0],
                         "I",
@@ -119,7 +119,7 @@ class Desmontador:
                 # --- Load ---
                 case "0000011":
                     immed = self.bin_para_int(resto, signed=True)
-                    nome = self.criarNome(linha[0], linha[2])
+                    nome = self.criar_nome(linha[0], linha[2])
                     intrucao = Instrucao(
                         linha[0],
                         "I",
@@ -161,7 +161,7 @@ class Desmontador:
                     func7 = resto[:-5]
                     rs2_int = self.bin_para_int(rs2_bin)
                     func3_com_func7 = linha[2] + str(int(func7 == "0100000"))
-                    nome = self.criarNome(linha[0], func3_com_func7)
+                    nome = self.criar_nome(linha[0], func3_com_func7)
                     intrucao = Instrucao(
                         linha[0],
                         "R",
@@ -208,7 +208,7 @@ class Desmontador:
                     immed_low = rd  # 5 bits
                     rs2_int = self.bin_para_int(rs2_bin)
                     immed = self.bin_para_int(immed_high + immed_low, signed=True)
-                    nome = self.criarNome(linha[0], linha[2])
+                    nome = self.criar_nome(linha[0], linha[2])
                     intrucao = Instrucao(
                         linha[0],
                         "S",
@@ -232,7 +232,7 @@ class Desmontador:
                     rs2_int = self.bin_para_int(rs2_bin)
                     imm_bits = immed_12 + immed_11 + immed_10_5 + immed_4_1
                     immed = self.bin_para_int(imm_bits + "0", signed=True)
-                    nome = self.criarNome(linha[0], linha[2])
+                    nome = self.criar_nome(linha[0], linha[2])
                     intrucao = Instrucao(
                         linha[0],
                         "B",
@@ -264,8 +264,8 @@ class Desmontador:
 
         for branch in branch_jal_index:
             instrucao_J_B: Instrucao = instrucoes[branch]
-            intrucao_destino = instrucoes[branch + instrucao_J_B.immed / 4]
-            instrucao_J_B.setIdDestino(id(intrucao_destino))
+            intrucao_destino = instrucoes[int(branch + instrucao_J_B.immed / 4)]
+            instrucao_J_B.set_id_destino(id(intrucao_destino))
 
         # Adiciona duas instruções "addi 0,0,0" no final
         addi_zero = Instrucao(linha[0], "I", "addi", 0, 0, func3=0, immed=0)

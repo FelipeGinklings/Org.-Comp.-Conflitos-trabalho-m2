@@ -15,13 +15,13 @@ class Instrucao:
     func7: int | None = None
     id_destino: int | None = None
 
-    def setImmed(self, immed: int):
+    def set_immed(self, immed: int):
         self.immed = immed
 
-    def setIdDestino(self, _id: int):
+    def set_id_destino(self, _id: int):
         self.id_destino = _id
 
-    def estaEm(self, instrucoes: list):
+    def esta_em(self, instrucoes: list):
         for index, intrucao in enumerate(instrucoes):
             if id(intrucao) == id(self):
                 return index, intrucao
@@ -55,9 +55,9 @@ if __name__ == "__main__":
     instrucao2 = Instrucao("0010011", "J", "jal")
     instrucao3 = Instrucao("0010011", "I", "addi")
 
-    instrucao2.setIdDestino(id(instrucao3))
+    instrucao2.set_id_destino(id(instrucao3))
 
     instrucoes = [instrucao1, instrucao2, instrucao3]
-    index, instrucao = instrucao1.estaEm(instrucoes)
+    index, instrucao = instrucao1.esta_em(instrucoes)
     print(index, instrucao)
     # print(type(id(teste)), id(teste))
