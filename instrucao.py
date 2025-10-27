@@ -13,7 +13,7 @@ class Instrucao:
     shamt: int | None = None
     immed: int | None = None
     func7: int | None = None
-    destino: "Instrucao" | None = None
+    destino: "Instrucao | None" = None
 
     def set_immed(self, immed: int):
         self.immed = immed

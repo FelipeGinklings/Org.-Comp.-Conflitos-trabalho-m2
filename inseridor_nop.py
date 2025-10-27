@@ -25,8 +25,8 @@ class InseridorNOP:
             filter(lambda instrucao: instrucao.formato in "BJ", estrutura_nops)
         )
 
-        for branch_posicao, branch in enumerate(branch_jal_index):
-            instrucao_J_B: Instrucao = estrutura_nops[branch]
+        for instrucao_J_B in branch_jal_index:
+            branch_posicao, _ = instrucao_J_B.esta_em(estrutura_nops)
             intrucao_destino = instrucao_J_B.destino
             posicao, _ = intrucao_destino.esta_em(estrutura_nops)
             endereco = (posicao - branch_posicao) * 4

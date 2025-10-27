@@ -20,6 +20,7 @@ if __name__ == "__main__":
         num_linhas_conflito, pos_linhas = deteccao.verificar_conflito(tem_forwarding)
         inseridor_NOP = InseridorNOP(num_linhas_conflito, pos_linhas, codigo_sem_nop)
         estrutura_nops = inseridor_NOP.adicionar_nops()
+        desmontador.imprimir_instrucoes(estrutura_nops)
 
     except FileNotFoundError:
         print("Nome do arquivo inválido. Tente novamente.")
