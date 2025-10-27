@@ -53,7 +53,7 @@ class Detector:
                 pos_linhas.append(i)
                 continue
 
-        print("Quantos pular: ", num_linhas_conflito)
-        print("Quais linhas: ", pos_linhas)
+        # print("Quantos pular: ", num_linhas_conflito)
+        # print("Quais linhas: ", pos_linhas)
 
         return num_linhas_conflito, pos_linhas
