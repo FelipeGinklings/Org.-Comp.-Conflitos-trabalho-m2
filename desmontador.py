@@ -75,6 +75,7 @@ class Desmontador:
     def dividir_e_linkar(self, linhas_divididas):
         instrucoes = []
         estrutura_instrucoes = []
+        branch_jal_index = []
         for index, linha in enumerate(linhas_divididas):
             op_code, rd, func_3, rs1, resto = linha
 
@@ -221,6 +222,7 @@ class Desmontador:
 
                 # --- Tipo B ---
                 case "1100011":
+                    branch_jal_index.append(index)
                     rs2_bin = resto[-5:]
                     upper = resto[:-5]
                     immed_12 = upper[0]
@@ -244,6 +246,7 @@ class Desmontador:
                 # --- Tipo J ---
                 case "1101111":
                     upper20 = resto + rs1 + func_3
+                    branch_jal_index.append(index)
                     imm_20 = upper20[0]
                     imm_10_1 = upper20[1:11]
                     imm_11 = upper20[11]
@@ -258,11 +261,16 @@ class Desmontador:
             estrutura_instrucoes.append(
                 (op_code, rd_int, func3_int, rs1_int, getattr(intrucao, "rs2", 0))
             )
+
+        for branch in branch_jal_index:
+            instrucao_J_B: Instrucao = instrucoes[branch]
+            intrucao_destino = instrucoes[branch + instrucao_J_B.immed / 4]
+            instrucao_J_B.setIdDestino(id(intrucao_destino))
+
         # Adiciona duas instruções "addi 0,0,0" no final
         addi_zero = Instrucao(linha[0], "I", "addi", 0, 0, func3=0, immed=0)
         instrucoes.extend([addi_zero, addi_zero])
         estrutura_instrucoes.extend([("0010011", 0, 0, 0, 0), ("0010011", 0, 0, 0, 0)])
-
         return instrucoes, estrutura_instrucoes
 
     def desmontar_instrucoes(self, linhas):
