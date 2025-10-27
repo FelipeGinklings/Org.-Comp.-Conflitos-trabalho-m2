@@ -258,7 +258,6 @@ class Desmontador:
             estrutura_instrucoes.append(
                 (op_code, rd_int, func3_int, rs1_int, getattr(intrucao, "rs2", 0))
             )
-            print(f"Linha {index:02}: {intrucao}")
         # Adiciona duas instruções "addi 0,0,0" no final
         addi_zero = Instrucao(linha[0], "I", "addi", 0, 0, func3=0, immed=0)
         instrucoes.extend([addi_zero, addi_zero])

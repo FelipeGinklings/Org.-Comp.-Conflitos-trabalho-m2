@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 
-@dataclass(frozen=True)
+@dataclass
 class Instrucao:
     opcode: str
     formato: str
@@ -13,6 +13,19 @@ class Instrucao:
     shamt: int | None = None
     immed: int | None = None
     func7: int | None = None
+    id_destino: int | None = None
+
+    def setImmed(self, immed: int):
+        self.immed = immed
+
+    def setIdDestino(self, _id: int):
+        self.id_destino = _id
+
+    def estaEm(self, instrucoes: list):
+        for index, intrucao in enumerate(instrucoes):
+            if id(intrucao) == id(self):
+                return index, intrucao
+        return -1, None
 
     def __str__(self):
         base = f"Formato = {self.formato} {self.nome}"
@@ -35,3 +48,16 @@ class Instrucao:
             campos.append(f"func7 = {self.func7}")
 
         return base + " | " + " | ".join(campos)
+
+
+if __name__ == "__main__":
+    instrucao1 = Instrucao("0010011", "I", "addi")
+    instrucao2 = Instrucao("0010011", "J", "jal")
+    instrucao3 = Instrucao("0010011", "I", "addi")
+
+    instrucao2.setIdDestino(id(instrucao3))
+
+    instrucoes = [instrucao1, instrucao2, instrucao3]
+    index, instrucao = instrucao1.estaEm(instrucoes)
+    print(index, instrucao)
+    # print(type(id(teste)), id(teste))

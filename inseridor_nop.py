@@ -1,9 +1,12 @@
+from instrucao import Instrucao
+
+
 class InseridorNOP:
     def __init__(self, num_NOPS, pos_linhas, estrutura):
         self.num_NOPS = num_NOPS
         self.pos_linhas = pos_linhas
         self.estrutura = estrutura
-        self.nop = ("0010011", 0, 0, 0, 0)
+        self.nop = Instrucao("0010011", "I", "addi")
 
     def adicionar_nops(self):
 
