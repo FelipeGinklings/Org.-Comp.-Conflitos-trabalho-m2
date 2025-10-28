@@ -1,0 +1,411 @@
+
+=== QUESTÃO 1: Detectar conflito de dados ===
+SEM FORWARDING
+Sobrecusto: 4 instruções
+Conflitos detectados: [1, 1, 2]
+Posições dos conflitos: [0, 1, 12]
+
+=== QUESTÃO 2: Detectar conflito de controle ===
+SEM FORWARDING
+Sobrecusto: 24 instruções
+Conflitos detectados: [3, 3, 3, 3, 3, 3, 3, 3]
+Posições dos conflitos: [16, 17, 19, 21, 22, 24, 28, 37]
+
+=== QUESTÃO 3: Corrigir conflito de dados com NOPs ===
+SEM FORWARDING
+Sobrecusto: 4 instruções NOP inseridas
+
+Código corrigido:
+Linha 01: Formato = I addi | rd = x5 | f3 = 0 | rs1 = x0 | imed = 15
+Linha 02: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 03: Formato = I addi | rd = x6 | f3 = 0 | rs1 = x0 | imed = 7
+Linha 04: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 05: Formato = I xori | rd = x7 | f3 = 4 | rs1 = x5 | imed = 255
+Linha 06: Formato = I ori | rd = x28 | f3 = 6 | rs1 = x6 | imed = 15
+Linha 07: Formato = I andi | rd = x29 | f3 = 7 | rs1 = x5 | imed = 15
+Linha 08: Formato = R add | rd = x30 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 09: Formato = R sub | rd = x31 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 32
+Linha 10: Formato = R and | rd = x8 | f3 = 7 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 11: Formato = R or | rd = x9 | f3 = 6 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 12: Formato = R xor | rd = x18 | f3 = 4 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 13: Formato = R sll | rd = x19 | f3 = 1 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 14: Formato = R srl | rd = x20 | f3 = 5 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 15: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = -16
+Linha 16: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 17: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 18: Formato = S sw | rd = x0 | f3 = 2 | rs1 = x2 | rs2 = x5 | imed = 0
+Linha 19: Formato = S sh | rd = x4 | f3 = 1 | rs1 = x2 | rs2 = x6 | imed = 4
+Linha 20: Formato = S sb | rd = x8 | f3 = 0 | rs1 = x2 | rs2 = x7 | imed = 8
+Linha 21: Formato = B beq | rd = x0 | f3 = 0 | rs1 = x5 | rs2 = x6 | imed = 8
+Linha 22: Formato = B bne | rd = x0 | f3 = 1 | rs1 = x5 | rs2 = x6 | imed = 12
+Linha 23: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 24: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 8
+Linha 25: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 26: Formato = B blt | rd = x0 | f3 = 4 | rs1 = x6 | rs2 = x5 | imed = 8
+Linha 27: Formato = B bge | rd = x0 | f3 = 5 | rs1 = x6 | rs2 = x5 | imed = 12
+Linha 28: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 29: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 8
+Linha 30: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 31: Formato = U lui | rd = x10 | f3 = 5 | rs1 = x8 | imed = 74664
+Linha 32: Formato = U auipc | rd = x11 | f3 = 0 | rs1 = x0 | imed = 4096
+Linha 33: Formato = J jal | rd = x1 | f3 = 0 | rs1 = x0 | imed = 32
+Linha 34: Formato = I lw | rd = x23 | f3 = 2 | rs1 = x2 | imed = 0
+Linha 35: Formato = I lh | rd = x24 | f3 = 1 | rs1 = x2 | imed = 4
+Linha 36: Formato = I lb | rd = x25 | f3 = 0 | rs1 = x2 | imed = 8
+Linha 37: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = 16
+Linha 38: Formato = I addi | rd = x17 | f3 = 0 | rs1 = x0 | imed = 93
+Linha 39: Formato = I addi | rd = x10 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 40: Formato = I ecall | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 41: Formato = I addi | rd = x12 | f3 = 0 | rs1 = x0 | imed = 42
+Linha 42: Formato = I jalr | rd = x0 | f3 = 0 | rs1 = x1 | imed = 0
+Linha 43: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 44: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+
+=== QUESTÃO 4: Corrigir conflito de controle com NOPs ===
+SEM FORWARDING
+Sobrecusto: 24 instruções NOP inseridas
+
+Código corrigido:
+Linha 01: Formato = I addi | rd = x5 | f3 = 0 | rs1 = x0 | imed = 15
+Linha 02: Formato = I addi | rd = x6 | f3 = 0 | rs1 = x0 | imed = 7
+Linha 03: Formato = I xori | rd = x7 | f3 = 4 | rs1 = x5 | imed = 255
+Linha 04: Formato = I ori | rd = x28 | f3 = 6 | rs1 = x6 | imed = 15
+Linha 05: Formato = I andi | rd = x29 | f3 = 7 | rs1 = x5 | imed = 15
+Linha 06: Formato = R add | rd = x30 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 07: Formato = R sub | rd = x31 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 32
+Linha 08: Formato = R and | rd = x8 | f3 = 7 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 09: Formato = R or | rd = x9 | f3 = 6 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 10: Formato = R xor | rd = x18 | f3 = 4 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 11: Formato = R sll | rd = x19 | f3 = 1 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 12: Formato = R srl | rd = x20 | f3 = 5 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 13: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = -16
+Linha 14: Formato = S sw | rd = x0 | f3 = 2 | rs1 = x2 | rs2 = x5 | imed = 0
+Linha 15: Formato = S sh | rd = x4 | f3 = 1 | rs1 = x2 | rs2 = x6 | imed = 4
+Linha 16: Formato = S sb | rd = x8 | f3 = 0 | rs1 = x2 | rs2 = x7 | imed = 8
+Linha 17: Formato = B beq | rd = x0 | f3 = 0 | rs1 = x5 | rs2 = x6 | imed = 32
+Linha 18: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 19: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 20: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 21: Formato = B bne | rd = x0 | f3 = 1 | rs1 = x5 | rs2 = x6 | imed = 36
+Linha 22: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 23: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 24: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 25: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 26: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 27: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 28: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 29: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 30: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 31: Formato = B blt | rd = x0 | f3 = 4 | rs1 = x6 | rs2 = x5 | imed = 32
+Linha 32: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 33: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 34: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 35: Formato = B bge | rd = x0 | f3 = 5 | rs1 = x6 | rs2 = x5 | imed = 36
+Linha 36: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 37: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 38: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 39: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 40: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 41: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 42: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 43: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 44: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 45: Formato = U lui | rd = x10 | f3 = 5 | rs1 = x8 | imed = 74664
+Linha 46: Formato = U auipc | rd = x11 | f3 = 0 | rs1 = x0 | imed = 4096
+Linha 47: Formato = J jal | rd = x1 | f3 = 0 | rs1 = x0 | imed = 44
+Linha 48: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 49: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 50: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 51: Formato = I lw | rd = x23 | f3 = 2 | rs1 = x2 | imed = 0
+Linha 52: Formato = I lh | rd = x24 | f3 = 1 | rs1 = x2 | imed = 4
+Linha 53: Formato = I lb | rd = x25 | f3 = 0 | rs1 = x2 | imed = 8
+Linha 54: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = 16
+Linha 55: Formato = I addi | rd = x17 | f3 = 0 | rs1 = x0 | imed = 93
+Linha 56: Formato = I addi | rd = x10 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 57: Formato = I ecall | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 58: Formato = I addi | rd = x12 | f3 = 0 | rs1 = x0 | imed = 42
+Linha 59: Formato = I jalr | rd = x0 | f3 = 0 | rs1 = x1 | imed = 0
+Linha 60: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 61: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 62: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 63: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 64: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+
+=== QUESTÃO 5: Solução integrada (dados + controle) ===
+SEM FORWARDING
+Sobrecusto total: 28 instruções NOP inseridas
+
+Código corrigido:
+Linha 01: Formato = I addi | rd = x5 | f3 = 0 | rs1 = x0 | imed = 15
+Linha 02: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 03: Formato = I addi | rd = x6 | f3 = 0 | rs1 = x0 | imed = 7
+Linha 04: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 05: Formato = I xori | rd = x7 | f3 = 4 | rs1 = x5 | imed = 255
+Linha 06: Formato = I ori | rd = x28 | f3 = 6 | rs1 = x6 | imed = 15
+Linha 07: Formato = I andi | rd = x29 | f3 = 7 | rs1 = x5 | imed = 15
+Linha 08: Formato = R add | rd = x30 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 09: Formato = R sub | rd = x31 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 32
+Linha 10: Formato = R and | rd = x8 | f3 = 7 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 11: Formato = R or | rd = x9 | f3 = 6 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 12: Formato = R xor | rd = x18 | f3 = 4 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 13: Formato = R sll | rd = x19 | f3 = 1 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 14: Formato = R srl | rd = x20 | f3 = 5 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 15: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = -16
+Linha 16: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 17: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 18: Formato = S sw | rd = x0 | f3 = 2 | rs1 = x2 | rs2 = x5 | imed = 0
+Linha 19: Formato = S sh | rd = x4 | f3 = 1 | rs1 = x2 | rs2 = x6 | imed = 4
+Linha 20: Formato = S sb | rd = x8 | f3 = 0 | rs1 = x2 | rs2 = x7 | imed = 8
+Linha 21: Formato = B beq | rd = x0 | f3 = 0 | rs1 = x5 | rs2 = x6 | imed = 32
+Linha 22: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 23: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 24: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 25: Formato = B bne | rd = x0 | f3 = 1 | rs1 = x5 | rs2 = x6 | imed = 36
+Linha 26: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 27: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 28: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 29: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 30: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 31: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 32: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 33: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 34: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 35: Formato = B blt | rd = x0 | f3 = 4 | rs1 = x6 | rs2 = x5 | imed = 32
+Linha 36: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 37: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 38: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 39: Formato = B bge | rd = x0 | f3 = 5 | rs1 = x6 | rs2 = x5 | imed = 36
+Linha 40: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 41: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 42: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 43: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 44: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 45: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 46: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 47: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 48: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 49: Formato = U lui | rd = x10 | f3 = 5 | rs1 = x8 | imed = 74664
+Linha 50: Formato = U auipc | rd = x11 | f3 = 0 | rs1 = x0 | imed = 4096
+Linha 51: Formato = J jal | rd = x1 | f3 = 0 | rs1 = x0 | imed = 44
+Linha 52: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 53: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 54: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 55: Formato = I lw | rd = x23 | f3 = 2 | rs1 = x2 | imed = 0
+Linha 56: Formato = I lh | rd = x24 | f3 = 1 | rs1 = x2 | imed = 4
+Linha 57: Formato = I lb | rd = x25 | f3 = 0 | rs1 = x2 | imed = 8
+Linha 58: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = 16
+Linha 59: Formato = I addi | rd = x17 | f3 = 0 | rs1 = x0 | imed = 93
+Linha 60: Formato = I addi | rd = x10 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 61: Formato = I ecall | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 62: Formato = I addi | rd = x12 | f3 = 0 | rs1 = x0 | imed = 42
+Linha 63: Formato = I jalr | rd = x0 | f3 = 0 | rs1 = x1 | imed = 0
+Linha 64: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 65: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 66: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 67: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 68: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+
+============================================================
+
+
+=== QUESTÃO 1: Detectar conflito de dados ===
+COM FORWARDING
+Sobrecusto: 0 instruções
+Conflitos detectados: [0, 0, 0]
+Posições dos conflitos: [0, 1, 12]
+
+=== QUESTÃO 2: Detectar conflito de controle ===
+COM FORWARDING
+Sobrecusto: 24 instruções
+Conflitos detectados: [3, 3, 3, 3, 3, 3, 3, 3]
+Posições dos conflitos: [16, 17, 19, 21, 22, 24, 28, 37]
+
+=== QUESTÃO 3: Corrigir conflito de dados com NOPs ===
+COM FORWARDING
+Sobrecusto: 0 instruções NOP inseridas
+
+Código corrigido:
+Linha 01: Formato = I addi | rd = x5 | f3 = 0 | rs1 = x0 | imed = 15
+Linha 02: Formato = I addi | rd = x6 | f3 = 0 | rs1 = x0 | imed = 7
+Linha 03: Formato = I xori | rd = x7 | f3 = 4 | rs1 = x5 | imed = 255
+Linha 04: Formato = I ori | rd = x28 | f3 = 6 | rs1 = x6 | imed = 15
+Linha 05: Formato = I andi | rd = x29 | f3 = 7 | rs1 = x5 | imed = 15
+Linha 06: Formato = R add | rd = x30 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 07: Formato = R sub | rd = x31 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 32
+Linha 08: Formato = R and | rd = x8 | f3 = 7 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 09: Formato = R or | rd = x9 | f3 = 6 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 10: Formato = R xor | rd = x18 | f3 = 4 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 11: Formato = R sll | rd = x19 | f3 = 1 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 12: Formato = R srl | rd = x20 | f3 = 5 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 13: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = -16
+Linha 14: Formato = S sw | rd = x0 | f3 = 2 | rs1 = x2 | rs2 = x5 | imed = 0
+Linha 15: Formato = S sh | rd = x4 | f3 = 1 | rs1 = x2 | rs2 = x6 | imed = 4
+Linha 16: Formato = S sb | rd = x8 | f3 = 0 | rs1 = x2 | rs2 = x7 | imed = 8
+Linha 17: Formato = B beq | rd = x0 | f3 = 0 | rs1 = x5 | rs2 = x6 | imed = 8
+Linha 18: Formato = B bne | rd = x0 | f3 = 1 | rs1 = x5 | rs2 = x6 | imed = 12
+Linha 19: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 20: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 8
+Linha 21: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 22: Formato = B blt | rd = x0 | f3 = 4 | rs1 = x6 | rs2 = x5 | imed = 8
+Linha 23: Formato = B bge | rd = x0 | f3 = 5 | rs1 = x6 | rs2 = x5 | imed = 12
+Linha 24: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 25: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 8
+Linha 26: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 27: Formato = U lui | rd = x10 | f3 = 5 | rs1 = x8 | imed = 74664
+Linha 28: Formato = U auipc | rd = x11 | f3 = 0 | rs1 = x0 | imed = 4096
+Linha 29: Formato = J jal | rd = x1 | f3 = 0 | rs1 = x0 | imed = 32
+Linha 30: Formato = I lw | rd = x23 | f3 = 2 | rs1 = x2 | imed = 0
+Linha 31: Formato = I lh | rd = x24 | f3 = 1 | rs1 = x2 | imed = 4
+Linha 32: Formato = I lb | rd = x25 | f3 = 0 | rs1 = x2 | imed = 8
+Linha 33: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = 16
+Linha 34: Formato = I addi | rd = x17 | f3 = 0 | rs1 = x0 | imed = 93
+Linha 35: Formato = I addi | rd = x10 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 36: Formato = I ecall | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 37: Formato = I addi | rd = x12 | f3 = 0 | rs1 = x0 | imed = 42
+Linha 38: Formato = I jalr | rd = x0 | f3 = 0 | rs1 = x1 | imed = 0
+Linha 39: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 40: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+
+=== QUESTÃO 4: Corrigir conflito de controle com NOPs ===
+COM FORWARDING
+Sobrecusto: 24 instruções NOP inseridas
+
+Código corrigido:
+Linha 01: Formato = I addi | rd = x5 | f3 = 0 | rs1 = x0 | imed = 15
+Linha 02: Formato = I addi | rd = x6 | f3 = 0 | rs1 = x0 | imed = 7
+Linha 03: Formato = I xori | rd = x7 | f3 = 4 | rs1 = x5 | imed = 255
+Linha 04: Formato = I ori | rd = x28 | f3 = 6 | rs1 = x6 | imed = 15
+Linha 05: Formato = I andi | rd = x29 | f3 = 7 | rs1 = x5 | imed = 15
+Linha 06: Formato = R add | rd = x30 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 07: Formato = R sub | rd = x31 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 32
+Linha 08: Formato = R and | rd = x8 | f3 = 7 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 09: Formato = R or | rd = x9 | f3 = 6 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 10: Formato = R xor | rd = x18 | f3 = 4 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 11: Formato = R sll | rd = x19 | f3 = 1 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 12: Formato = R srl | rd = x20 | f3 = 5 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 13: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = -16
+Linha 14: Formato = S sw | rd = x0 | f3 = 2 | rs1 = x2 | rs2 = x5 | imed = 0
+Linha 15: Formato = S sh | rd = x4 | f3 = 1 | rs1 = x2 | rs2 = x6 | imed = 4
+Linha 16: Formato = S sb | rd = x8 | f3 = 0 | rs1 = x2 | rs2 = x7 | imed = 8
+Linha 17: Formato = B beq | rd = x0 | f3 = 0 | rs1 = x5 | rs2 = x6 | imed = 32
+Linha 18: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 19: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 20: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 21: Formato = B bne | rd = x0 | f3 = 1 | rs1 = x5 | rs2 = x6 | imed = 36
+Linha 22: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 23: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 24: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 25: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 26: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 27: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 28: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 29: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 30: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 31: Formato = B blt | rd = x0 | f3 = 4 | rs1 = x6 | rs2 = x5 | imed = 32
+Linha 32: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 33: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 34: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 35: Formato = B bge | rd = x0 | f3 = 5 | rs1 = x6 | rs2 = x5 | imed = 36
+Linha 36: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 37: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 38: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 39: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 40: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 41: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 42: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 43: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 44: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 45: Formato = U lui | rd = x10 | f3 = 5 | rs1 = x8 | imed = 74664
+Linha 46: Formato = U auipc | rd = x11 | f3 = 0 | rs1 = x0 | imed = 4096
+Linha 47: Formato = J jal | rd = x1 | f3 = 0 | rs1 = x0 | imed = 44
+Linha 48: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 49: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 50: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 51: Formato = I lw | rd = x23 | f3 = 2 | rs1 = x2 | imed = 0
+Linha 52: Formato = I lh | rd = x24 | f3 = 1 | rs1 = x2 | imed = 4
+Linha 53: Formato = I lb | rd = x25 | f3 = 0 | rs1 = x2 | imed = 8
+Linha 54: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = 16
+Linha 55: Formato = I addi | rd = x17 | f3 = 0 | rs1 = x0 | imed = 93
+Linha 56: Formato = I addi | rd = x10 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 57: Formato = I ecall | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 58: Formato = I addi | rd = x12 | f3 = 0 | rs1 = x0 | imed = 42
+Linha 59: Formato = I jalr | rd = x0 | f3 = 0 | rs1 = x1 | imed = 0
+Linha 60: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 61: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 62: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 63: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 64: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+
+=== QUESTÃO 5: Solução integrada (dados + controle) ===
+COM FORWARDING
+Sobrecusto total: 24 instruções NOP inseridas
+
+Código corrigido:
+Linha 01: Formato = I addi | rd = x5 | f3 = 0 | rs1 = x0 | imed = 15
+Linha 02: Formato = I addi | rd = x6 | f3 = 0 | rs1 = x0 | imed = 7
+Linha 03: Formato = I xori | rd = x7 | f3 = 4 | rs1 = x5 | imed = 255
+Linha 04: Formato = I ori | rd = x28 | f3 = 6 | rs1 = x6 | imed = 15
+Linha 05: Formato = I andi | rd = x29 | f3 = 7 | rs1 = x5 | imed = 15
+Linha 06: Formato = R add | rd = x30 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 07: Formato = R sub | rd = x31 | f3 = 0 | rs1 = x5 | rs2 = x6 | func7 = 32
+Linha 08: Formato = R and | rd = x8 | f3 = 7 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 09: Formato = R or | rd = x9 | f3 = 6 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 10: Formato = R xor | rd = x18 | f3 = 4 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 11: Formato = R sll | rd = x19 | f3 = 1 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 12: Formato = R srl | rd = x20 | f3 = 5 | rs1 = x5 | rs2 = x6 | func7 = 0
+Linha 13: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = -16
+Linha 14: Formato = S sw | rd = x0 | f3 = 2 | rs1 = x2 | rs2 = x5 | imed = 0
+Linha 15: Formato = S sh | rd = x4 | f3 = 1 | rs1 = x2 | rs2 = x6 | imed = 4
+Linha 16: Formato = S sb | rd = x8 | f3 = 0 | rs1 = x2 | rs2 = x7 | imed = 8
+Linha 17: Formato = B beq | rd = x0 | f3 = 0 | rs1 = x5 | rs2 = x6 | imed = 32
+Linha 18: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 19: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 20: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 21: Formato = B bne | rd = x0 | f3 = 1 | rs1 = x5 | rs2 = x6 | imed = 36
+Linha 22: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 23: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 24: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 25: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 26: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 27: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 28: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 29: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 30: Formato = I addi | rd = x21 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 31: Formato = B blt | rd = x0 | f3 = 4 | rs1 = x6 | rs2 = x5 | imed = 32
+Linha 32: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 33: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 34: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 35: Formato = B bge | rd = x0 | f3 = 5 | rs1 = x6 | rs2 = x5 | imed = 36
+Linha 36: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 37: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 38: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 39: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 1
+Linha 40: Formato = J jal | rd = x0 | f3 = 0 | rs1 = x0 | imed = 20
+Linha 41: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 42: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 43: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 44: Formato = I addi | rd = x22 | f3 = 0 | rs1 = x0 | imed = 2
+Linha 45: Formato = U lui | rd = x10 | f3 = 5 | rs1 = x8 | imed = 74664
+Linha 46: Formato = U auipc | rd = x11 | f3 = 0 | rs1 = x0 | imed = 4096
+Linha 47: Formato = J jal | rd = x1 | f3 = 0 | rs1 = x0 | imed = 44
+Linha 48: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 49: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 50: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 51: Formato = I lw | rd = x23 | f3 = 2 | rs1 = x2 | imed = 0
+Linha 52: Formato = I lh | rd = x24 | f3 = 1 | rs1 = x2 | imed = 4
+Linha 53: Formato = I lb | rd = x25 | f3 = 0 | rs1 = x2 | imed = 8
+Linha 54: Formato = I addi | rd = x2 | f3 = 0 | rs1 = x2 | imed = 16
+Linha 55: Formato = I addi | rd = x17 | f3 = 0 | rs1 = x0 | imed = 93
+Linha 56: Formato = I addi | rd = x10 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 57: Formato = I ecall | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 58: Formato = I addi | rd = x12 | f3 = 0 | rs1 = x0 | imed = 42
+Linha 59: Formato = I jalr | rd = x0 | f3 = 0 | rs1 = x1 | imed = 0
+Linha 60: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 61: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 62: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0
+Linha 63: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+Linha 64: Formato = I addi | rd = x0 | f3 = 0 | rs1 = x0 | imed = 0
+
+============================================================
+
+Programa finalizado!
