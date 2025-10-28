@@ -1,35 +1,46 @@
+from dataclasses import dataclass
+from detector import Detector
 from instrucao import Instrucao
+import copy
 
 
+@dataclass
 class InseridorNOP:
-    def __init__(self, num_NOPS, pos_linhas, estrutura: list[Instrucao]):
-        self.num_NOPS = num_NOPS
-        self.pos_linhas = pos_linhas
-        self.estrutura = estrutura
-        self.nop = Instrucao("0010011", "I", "addi")
+    _instrucoes_originais: list[Instrucao]
+    _pos_linhas: list[int]
+    _num_linhas_conflito: list[int]
 
-    def adicionar_nops(self):
+    @classmethod
+    def from_detector(cls, detector: Detector):
+        # Usar deepcopy para evitar mutação compartilhada
+        return cls(
+            _instrucoes_originais=copy.deepcopy(detector.desmontador.instrucoes),
+            _pos_linhas=detector.pos_linhas[:],
+            _num_linhas_conflito=detector.num_linhas_conflito[:],
+        )
 
-        estrutura_nops = self.estrutura[:]
+    def gerar_instrucoes_com_nop(self) -> list[Instrucao]:
+        """Método explícito ao invés de property com efeito colateral"""
+        novas_instrucoes = copy.deepcopy(self._instrucoes_originais)
         offset = 0
+        nop: Instrucao = Instrucao("0010011", "I", "addi")
 
-        for index in range(len(self.pos_linhas)):
-            pos = self.pos_linhas[index] + offset
-            n = self.num_NOPS[index]
+        for index in range(len(self._pos_linhas)):
+            pos = self._pos_linhas[index] + offset
+            n = self._num_linhas_conflito[index]
 
             for _ in range(n):
-                estrutura_nops.insert(pos + 1, self.nop)
+                novas_instrucoes.insert(pos + 1, nop)
                 offset += 1
 
         branch_jal_index = list(
-            filter(lambda instrucao: instrucao.formato in "BJ", estrutura_nops)
+            filter(lambda instrucao: instrucao.formato in "BJ", novas_instrucoes)
         )
-
         for instrucao_J_B in branch_jal_index:
-            branch_posicao, _ = instrucao_J_B.esta_em(estrutura_nops)
+            branch_posicao, _ = instrucao_J_B.esta_em(novas_instrucoes)
             intrucao_destino = instrucao_J_B.destino
-            posicao, _ = intrucao_destino.esta_em(estrutura_nops)
+            posicao, _ = intrucao_destino.esta_em(novas_instrucoes)
             endereco = (posicao - branch_posicao) * 4
-            instrucao_J_B.set_immed(endereco)
+            instrucao_J_B.set_immediato(endereco)
 
-        return estrutura_nops
+        return novas_instrucoes

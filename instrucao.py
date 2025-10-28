@@ -11,12 +11,12 @@ class Instrucao:
     rs2: int = 0
     func3: int = 0
     shamt: int | None = None
-    immed: int | None = None
+    immediato: int | None = None
     func7: int | None = None
     destino: "Instrucao | None" = None
 
-    def set_immed(self, immed: int):
-        self.immed = immed
+    def set_immediato(self, immediato: int):
+        self.immediato = immediato
 
     def set_id_destino(self, destino: "Instrucao"):
         self.destino = destino
@@ -42,8 +42,8 @@ class Instrucao:
 
         if self.shamt is not None:
             campos.append(f"shamt = {self.shamt}")
-        elif self.immed is not None:
-            campos.append(f"imed = {self.immed}")
+        elif self.immediato is not None:
+            campos.append(f"imed = {self.immediato}")
         elif self.func7 is not None:
             campos.append(f"func7 = {self.func7}")
 
