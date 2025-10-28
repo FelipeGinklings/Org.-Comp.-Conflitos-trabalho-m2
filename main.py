@@ -9,7 +9,7 @@ if __name__ == "__main__":
     try:
         # Obter linhas do arquivo
         linhas_obj = Linhas(nome_arquivo="todasIntrucoes.txt")
-        # linhas_obj.pedirPorInput()
+        linhas_obj.pedirPorInput()
         linhas = linhas_obj.getLinhas()
 
         # Processar questões
@@ -22,3 +22,4 @@ if __name__ == "__main__":
         print(f"Erro: {e}")
 
     print("Programa finalizado!")
+
